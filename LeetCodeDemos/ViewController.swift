@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  LeetCodeDemo
+//  LeetCodeDemos
 //
-//  Created by reborn on 2019/10/22.
+//  Created by maying on 2019/12/23.
 //  Copyright © 2019 reborn. All rights reserved.
 //
 
@@ -26,7 +26,8 @@ class ViewController: UIViewController {
 //        print("快速排序1结果(递归)",list)
         
 //        testSort(sortObject: QuikSort2())
-        testSort(sortObject: HeapSort())
+//        testSort(sortObject: HeapSort())
+        testSort(sortObject: MergingSort())
         
     }
 }
@@ -53,5 +54,3 @@ func testSort(sortObject: SorType) {
     print(sortList)
     print("\n")
 }
-
-
