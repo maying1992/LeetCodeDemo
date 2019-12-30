@@ -62,7 +62,7 @@ class SelectionSort: SorType {
             var minValue = list[i]
             var minIndex = i
             
-            // 寻找无序部分中的最小值
+            /// 寻找无序部分中的最小值
             while j < list.count {
                 if minValue > list[j] {
                     minValue = list[j]
@@ -70,7 +70,7 @@ class SelectionSort: SorType {
                 }
                 j = j + 1
             }
-            // 与无序表中的第一个值交换，让其成为有序表中的最后一个值
+            /// 与无序表中的第一个值交换，让其成为有序表中的最后一个值
             if minIndex != i {
                 let temp = list[i]
                 list[i] = list[minIndex]
@@ -94,7 +94,7 @@ class InsertionSort: SorType {
     func sort(items: Array<Int>) -> Array<Int> {
                                                  
         var list = items
-        for i in 1..<list.count { // 循环无序数列
+        for i in 1..<list.count { /// 循环无序数列
             var j = i
             
             while j > 0 {
@@ -103,8 +103,8 @@ class InsertionSort: SorType {
                     list[j] = list[j - 1]
                     list[j - 1] = temp
                     
-                    j = j - 1 // 交换后 可能还比再往前一个小，继续交换，直到不能交换位置
-                } else { // 不交换
+                    j = j - 1 /// 交换后 可能还比再往前一个小，继续交换，直到不能交换位置
+                } else { /// 不交换
                     break
                 }
             }
@@ -144,7 +144,7 @@ class ShellSort: SorType {
                     }
                 }
             }
-            step = step / 2 //缩小步长
+            step = step / 2 ///缩小步长
         }
 
         return list
@@ -167,11 +167,11 @@ class QuikSort1 {
 
     func partition(items: inout [Int], low:Int, high:Int) -> Int {
         
-        let root = items[high] // 取数组中最后一个元素作为基数
-        var index = low        // index从0开始，记录数组中大于基数的元素位置
+        let root = items[high] /// 取数组中最后一个元素作为基数
+        var index = low        /// index从0开始，记录数组中大于基数的元素位置
         
         for i in low...high {
-            // 当items[i]<基数 且i != index时，交换数组i和index的元素，并index+=1，继续向下记录
+            /// 当items[i]<基数 且i != index时，交换数组i和index的元素，并index+=1，继续向下记录
             if items[i] < root {
 
                 if i != index {
@@ -180,12 +180,12 @@ class QuikSort1 {
                 index = index + 1
             }
         }
-        //循环结束后，index记录了此时数组中大于基数的元素，若index不是数组中的最后一个元素，则交换元素的位置
+        ///循环结束后，index记录了此时数组中大于基数的元素，若index不是数组中的最后一个元素，则交换元素的位置
         if high != index {
             items.swapAt(high, index)
         }
         
-        //第一次分割结束，返回此时数组分割元素的位置，即index左边的元素都小于root,index右边的元素都大于root
+        ///第一次分割结束，返回此时数组分割元素的位置，即index左边的元素都小于root,index右边的元素都大于root
         return index
     }
     
@@ -229,9 +229,9 @@ class QuikSort2: SorType {
     }
 }
 
-/// 堆排序
+/// 6、堆排序
 ///算法思想:堆排序利用了最大堆（或小根堆）堆顶记录的关键字最大（或最小）这一特征，使得在当前无序区中选取最大（或最小）关键字的记录变得简单。
-///给你一个无序的数组，我们需要把这个数组构建成二叉堆，然后在通过堆顶逐个删除的方式来实现堆排序。其实，也不算是删除了，相当于是把堆顶的元素与堆尾部在交换位置，然后在通过下沉的方式，把二叉树恢复成二叉堆。
+///给你一个无序的数组，我们需要把这个数组构建成二叉堆，然后再通过堆顶逐个删除的方式来实现堆排序。其实，也不算是删除了，相当于是把堆顶的元素与堆尾部在交换位置，然后在通过下沉的方式，把二叉树恢复成二叉堆。
 
 ///
 /// 堆排序的时间复杂度是O (nlogn), 空间复杂度是 O(1)
@@ -241,18 +241,18 @@ class HeapSort :SorType {
         var list = items
         var endIndex = items.count - 1
         
-        // 创建大顶堆，其实就是将list转成大顶堆层次的遍历结果
+        /// 创建大顶堆，其实就是将list转成大顶堆层次的遍历结果
         heapCreate(items: &list)
         
         while endIndex >= 0 {
-            //将大顶堆的顶点（最大的那个值）与大顶堆的最后一个值进行交换
+            ///将大顶堆的顶点（最大的那个值）与大顶堆的最后一个值进行交换
             print("将list[0]:\(list[0])与list[\(endIndex)]:\(list[endIndex])交换")
             let temp = list[0]
             list[0] = list[endIndex]
             list[endIndex] = temp
-            endIndex -= 1   //缩小大顶堆的范围
+            endIndex -= 1   ///缩小大顶堆的范围
             
-            //对交换后的大顶堆进行调整，使其重新成为大顶堆
+            ///对交换后的大顶堆进行调整，使其重新成为大顶堆
             heapAdjast(items: &list, startIndex: 0,endIndex: endIndex + 1)
             print("调整后:\(list)\n")
         }
@@ -272,21 +272,18 @@ class HeapSort :SorType {
     }
     
     /// 对大顶堆的局部进行调整，使其该节点的所有父类符合大顶堆的特点
-    ///
-    /// - parameter items:    list
-    /// - parameter endIndex: 当前要调整的节点
     func heapAdjast(items: inout Array<Int>, startIndex: Int, endIndex: Int) {
         let temp = items[startIndex]
-        var fatherIndex = startIndex + 1    //父节点下标
-        var maxChildIndex = 2 * fatherIndex //左孩子下标
+        var fatherIndex = startIndex + 1    ///父节点下标
+        var maxChildIndex = 2 * fatherIndex ///左孩子下标
         
         while maxChildIndex <= endIndex {
-            //比较左右孩子并找出比较大的下标
+            ///比较左右孩子并找出比较大的下标
             if maxChildIndex < endIndex && items[maxChildIndex-1] < items[maxChildIndex] {
                 maxChildIndex = maxChildIndex + 1
             }
             
-            //如果较大的那个子节点比根节点大，就将该节点的值赋给父节点
+            ///如果较大的那个子节点比根节点大，就将该节点的值赋给父节点
             if temp < items[maxChildIndex-1] {
                 items[fatherIndex-1] = items[maxChildIndex-1]
             } else {
@@ -299,10 +296,25 @@ class HeapSort :SorType {
     }
 }
 
-// 归并排序
+// 7、归并排序
+//归并排序算法有两个基本的操作，一个是分，也就是把原数组划分成两个子数组的过程。另一个是治，它将两个有序数组合并成一个更大的有序数组。
+// 它将数组平均分成两部分: center = (left + right)/2，当数组分得足够小时---数组中只有一个元素时，只有一个元素的数组自然而然地就可以视为是有序的，此时就可以进行合并操作了。因此，上面讲的合并两个有序的子数组，是从 只有一个元素 的两个子数组开始合并的。
+
+// 特性
+// 1、归并排序中，用到了一个临时数组，故空间复杂度为O(N)
+// 2、时间复杂度为O(NlogN)
+
+///比如初始数组：[24,13,26,1,2,27,38,15]
+///①分成了两个大小相等的子数组：[24,13,26,1]    [2,27,38,15]
+///②再划分成了四个大小相等的子数组：[24,13]   [26,1]    [2,27]    [38,15]
+///③此时，left < right 还是成立，再分：[24]   [13]   [26]    [1]    [2]     [27]    [38]   [15]
+///此时，有8个小数组，每个数组都可以视为有序的数组了！！！，每个数组中的left == right，从递归中返回(从19行--20行的代码中返回)，故开始执行合并(第21行)：
+///merge([24],[13]) 得到 [13,24]
+///merge([26],[1]) 得到[1,26]
+
 class MergingSort : SorType {
     func sort(items: Array<Int>) -> Array<Int> {
-        //将数组中的每一个元素放入一个数组中
+        ///将数组中的每一个元素放入一个数组中
         var tempArray: Array<Array<Int>> = []
         for item in items {
             var subArray: Array<Int> = []
@@ -310,7 +322,7 @@ class MergingSort : SorType {
             tempArray.append(subArray)
         }
         
-        //对这个数组中的数组进行合并，直到合并完毕为止
+        ///对这个数组中的数组进行合并，直到合并完毕为止
         while tempArray.count != 1 {
             print(tempArray)
             var i = 0
@@ -348,11 +360,12 @@ class MergingSort : SorType {
             }
         }
         
+        /// 补充第一个数组中未被添加到结果集
         while firstIndex < firstList.count {
             resultList.append(firstList[firstIndex])
             firstIndex += 1
         }
-        
+        /// 补充第二个数组中未被添加到结果集
         while secondIndex < secondList.count {
             resultList.append(secondList[secondIndex])
             secondIndex += 1
@@ -360,4 +373,97 @@ class MergingSort : SorType {
         
         return resultList
     }
+}
+
+// 8、基数排序
+class RadixSort: SorType {
+    func sort(items: Array<Int>) -> Array<Int> {
+        var list = items
+        if list.count > 0 {
+            radixSort(list: &list)
+        }
+        return list
+    }
+    
+    private func radixSort(list: inout Array<Int>) {
+        var bucket = createBucket()
+        let maxNumber = listMaxItem(list: list)
+        let maxLength = numberLength(number: maxNumber)
+        
+        for digit in 1...maxLength {
+            //入桶
+            for item in list {
+                let baseNumber = fetchBaseNumber(number: item, digit: digit)
+                bucket[baseNumber].append(item) //根据基数进入相应的桶中
+            }
+            print("第\(digit)轮入桶结果")
+            print("\(bucket)")
+
+            //出桶
+            var index = 0
+            for i in 0..<bucket.count {
+                while !bucket[i].isEmpty {
+                    list[index] = bucket[i].remove(at: 0)
+                    index += 1
+                }
+            }
+            print("第\(digit)轮出桶结果")
+            print("\(list)\n")
+        }
+    }
+    
+    /// 创建10个桶
+    ///
+    /// - returns: 返回创建好的桶子
+    private func createBucket() -> Array<Array<Int>> {
+        var bucket: Array<Array<Int>> = []
+        for _ in 0..<10 {
+            bucket.append([])
+        }
+        return bucket
+    }
+    
+    
+    /// 计算无序序列中最大的那个数
+    ///
+    /// - parameter list: 数列
+    ///
+    /// - returns: 返回该数列中最大的值
+    private func listMaxItem(list: Array<Int>) -> Int {
+        var maxNumber = list[0]
+        for item in list {
+            if maxNumber < item {
+                maxNumber = item
+            }
+        }
+        return maxNumber
+    }
+
+    
+    /// 获取数字的长度
+    ///
+    /// - parameter number: 该数字
+    ///
+    /// - returns: 返回该数字的长度
+    func numberLength(number: Int) -> Int {
+        return "\(number)".count
+    }
+    
+    /// 获取相应位置的数字
+    ///
+    /// - parameter number: 操作的数字
+    /// - parameter digit:  位数
+    ///
+    /// - returns: 返回该位数上的数字
+    func fetchBaseNumber(number: Int, digit: Int) -> Int{
+        if digit > 0 && digit <= numberLength(number: number) {
+            var numbersArray: Array<Int> = []
+            for char in "\(number)" {
+                numbersArray.append(Int("\(char)")!)
+            }
+            return numbersArray[numbersArray.count - digit]
+        }
+        return 0
+    }
+
 }

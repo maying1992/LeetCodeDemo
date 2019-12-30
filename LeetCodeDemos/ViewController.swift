@@ -27,7 +27,8 @@ class ViewController: UIViewController {
         
 //        testSort(sortObject: QuikSort2())
 //        testSort(sortObject: HeapSort())
-        testSort(sortObject: MergingSort())
+//        testSort(sortObject: MergingSort())
+        testSort(sortObject: RadixSort())
         
     }
 }
@@ -50,6 +51,7 @@ func leetCode16Test() {
 
 func testSort(sortObject: SorType) {
     let list: Array<Int> = [2,3,5,7,4,8,6,10,1,9]
+
     let sortList = sortObject.sort(items: list)
     print(sortList)
     print("\n")
