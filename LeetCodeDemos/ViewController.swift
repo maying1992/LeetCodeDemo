@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     
 //        leetCode15Test()
 //        leetCode16Test()
+        leetCode344Test()
 //
 //        testSort(sortObject: BubbleSort())
 //        testSort(sortObject: SelectionSort())
@@ -28,7 +29,11 @@ class ViewController: UIViewController {
 //        testSort(sortObject: QuikSort2())
 //        testSort(sortObject: HeapSort())
 //        testSort(sortObject: MergingSort())
-        testSort(sortObject: RadixSort())
+//        testSort(sortObject: RadixSort())
+
+        
+        
+        
         
     }
 }
@@ -47,6 +52,15 @@ func leetCode16Test() {
     
     let result: Int = LeetCode16().getFinalResult(nums: list, target: target)
     print("最接近的三个数之和", result)
+}
+
+func leetCode344Test() {
+    
+//    var list = ["a","b","c","d","e","f"]
+    var list = ["a","b","c"]
+
+    LeetCode344().getFinalResult(&list)
+    print("反转字符串结果", list)
 }
 
 func testSort(sortObject: SorType) {

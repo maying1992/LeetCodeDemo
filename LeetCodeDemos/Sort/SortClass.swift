@@ -390,6 +390,7 @@ class RadixSort: SorType {
         let maxNumber = listMaxItem(list: list)
         let maxLength = numberLength(number: maxNumber)
         
+        
         for digit in 1...maxLength {
             //入桶
             for item in list {
