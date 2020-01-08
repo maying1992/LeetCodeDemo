@@ -56,9 +56,15 @@ func leetCode16Test() {
 
 func leetCode344Test() {
     
-//    var list = ["a","b","c","d","e","f"]
-    var list = ["a","b","c"]
+    let a: Character = "a"
+    let b: Character = "b"
+    let c: Character = "c"
+    let d: Character = "d"
 
+//    var list = [a, b, c]
+    var list = [a, b, c, d]
+    
+    print("反转前数据", list)
     LeetCode344().getFinalResult(&list)
     print("反转字符串结果", list)
 }

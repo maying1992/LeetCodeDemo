@@ -23,15 +23,15 @@ import UIKit
 
 class LeetCode344: NSObject {
     
-    func getFinalResult(_ s : inout [String]) {
-        return Solution344().reverseString2(&s)
+    func getFinalResult(_ s : inout [Character]) {
+        Solution344().reverseString2(&s)
     }
 }
 
 class Solution344 {
     
     /// 方法1：暴力方法，先判断数组个数为奇偶，首尾两两交换位置
-    func reverseString1(_ s: inout [String]){
+    func reverseString1(_ s: inout [Character]){
 
         if s.count%2 == 0 {
             var i = 0
@@ -57,7 +57,7 @@ class Solution344 {
     }
 
     /// 方法2：优化后，首尾两两交换位置，其实就是边界条件的优化(什么时候停止交换)
-    func reverseString2(_ s: inout [String]) {
+    func reverseString2(_ s: inout [Character]) {
             var i = 0
             var j = s.count-1
             while i < j {
