@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     
 //        leetCode15Test()
 //        leetCode16Test()
-        leetCode344Test()
+//        leetCode344Test()
+        leetCode3Test()
 //
 //        testSort(sortObject: BubbleSort())
 //        testSort(sortObject: SelectionSort())
@@ -67,6 +68,13 @@ func leetCode344Test() {
     print("反转前数据", list)
     LeetCode344().getFinalResult(&list)
     print("反转字符串结果", list)
+}
+
+func leetCode3Test() {
+    let list = "abcabcbb"
+    print("操作前数据", list)
+    let length = LeetCode3().getFinalResult(list);
+    print("无重复字符的最长子串的长度", length)
 }
 
 func testSort(sortObject: SorType) {
