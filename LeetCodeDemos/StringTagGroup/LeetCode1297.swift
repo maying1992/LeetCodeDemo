@@ -33,15 +33,44 @@ import UIKit
 // 由于 minSize 和 maxSize 都不超过 26，因此我们可以枚举所有长度在 minSize 与 maxSize 之间的字符串，选出其中字母数量小于等于的 maxLetters 的字符串并进行频数统计。
 // 因为是求次数最大的，如果一个长串满足条件，那么他的子串也一定满足，也就是说子串的次数一定大于长串。因此只需要看最短的即可
 
-class LeetCode1297: NSObject {
+// 假设字符串 T 在给定的字符串 S 中出现的次数为 k，那么 T 的任意一个子串出现的次数至少也为 k，即 T 的任意一个子串在 S 中出现的次数不会少于 T 本身。这样我们就可以断定，在所有满足条件且出现次数最多的的字符串中，一定有一个的长度恰好为 minSize。
 
+//这样以来，我们只需要枚举所有长度为 minSize 的字符串即可，时空复杂度均减少了 O(S)。
+
+
+class LeetCode1297: NSObject {
+    
+    func getFinalResult(_ s: String, _ maxLetters: Int, _ minSize: Int, _ maxSize: Int) -> Int {
+        return Solution1297().maxFreq(s, maxLetters, minSize, maxSize)
+    }
 }
 
 class Solution1297 {
-
     func maxFreq(_ s: String, _ maxLetters: Int, _ minSize: Int, _ maxSize: Int) -> Int {
         
-        return 0
+        var substrsCount = [String:Int]()
+        var subStr = ""
+        var charsCounter = [Character:Int]()
+        for ch in s {
+            subStr.append(ch)
+            charsCounter.updateValue(1 + (charsCounter[ch] ?? 0), forKey: ch)
+            
+            if subStr.count == minSize {
+                if charsCounter.count <= maxLetters {
+                    substrsCount.updateValue(1 + (substrsCount[subStr]  ?? 0), forKey: subStr)
+                }
+                let ch = subStr.removeFirst()
+                if let c = charsCounter[ch] {
+                    if c == 1 {
+                        charsCounter.removeValue(forKey: ch)
+                    } else {
+                        charsCounter.updateValue(c - 1, forKey: ch)
+                    }
+                }
+            }
+        }
+        
+        return substrsCount.values.max() ?? 0
     }
-}
+ }
 

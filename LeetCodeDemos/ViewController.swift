@@ -16,7 +16,8 @@ class ViewController: UIViewController {
 //        leetCode15Test()
 //        leetCode16Test()
 //        leetCode344Test()
-        leetCode3Test()
+//        leetCode3Test()
+        leetCode1297Test()
 //
 //        testSort(sortObject: BubbleSort())
 //        testSort(sortObject: SelectionSort())
@@ -31,6 +32,7 @@ class ViewController: UIViewController {
 //        testSort(sortObject: HeapSort())
 //        testSort(sortObject: MergingSort())
 //        testSort(sortObject: RadixSort())
+        
 
         
         
@@ -75,6 +77,15 @@ func leetCode3Test() {
     print("操作前数据", list)
     let length = LeetCode3().getFinalResult(list);
     print("无重复字符的最长子串的长度", length)
+}
+
+func leetCode1297Test() {
+    let list = "aababcaab"
+
+    print("操作前数据", list)
+    let count = LeetCode1297().getFinalResult(list, 2, 3, 4)
+
+    print("出现次数最大的任意子串的出现次数", count)
 }
 
 func testSort(sortObject: SorType) {
