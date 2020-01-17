@@ -37,7 +37,6 @@ import UIKit
 
 //这样以来，我们只需要枚举所有长度为 minSize 的字符串即可，时空复杂度均减少了 O(S)。
 
-
 class LeetCode1297: NSObject {
     
     func getFinalResult(_ s: String, _ maxLetters: Int, _ minSize: Int, _ maxSize: Int) -> Int {
@@ -47,23 +46,29 @@ class LeetCode1297: NSObject {
 
 class Solution1297 {
     func maxFreq(_ s: String, _ maxLetters: Int, _ minSize: Int, _ maxSize: Int) -> Int {
-        
         var substrsCount = [String:Int]()
         var subStr = ""
         var charsCounter = [Character:Int]()
         for ch in s {
+            print("拼接字符",ch)
             subStr.append(ch)
+            print("添加\(ch)在charsCounter中的个数")
             charsCounter.updateValue(1 + (charsCounter[ch] ?? 0), forKey: ch)
             
             if subStr.count == minSize {
                 if charsCounter.count <= maxLetters {
+                    print("本次子串", subStr)
                     substrsCount.updateValue(1 + (substrsCount[subStr]  ?? 0), forKey: subStr)
                 }
+                
                 let ch = subStr.removeFirst()
+                print("移除首字母\(ch), 此时子串为\(subStr)")
                 if let c = charsCounter[ch] {
                     if c == 1 {
+                        print("删除charsCounter中\(ch)字符")
                         charsCounter.removeValue(forKey: ch)
                     } else {
+                        print("减少charsCounter中\(ch)字符的个数")
                         charsCounter.updateValue(c - 1, forKey: ch)
                     }
                 }
